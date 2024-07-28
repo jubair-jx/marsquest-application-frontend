@@ -21,3 +21,20 @@ export const socialMedia = [
     link: "https://www.linkedin.com/in/mohammad-jubair/",
   },
 ];
+export const formSteps = [
+  {
+    title: "Personal Information",
+    route: "personal-info",
+    link: "",
+  },
+  {
+    title: "Travel Preferences",
+    route: "travel-prefer",
+    link: "",
+  },
+  {
+    title: "Health and Safety",
+    route: "health-safety",
+    link: "",
+  },
+];

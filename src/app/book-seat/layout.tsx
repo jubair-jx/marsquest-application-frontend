@@ -1,7 +1,8 @@
 import PageHeader from "@/components/Shared/CommonTitile/CommonTitile";
+import StepNavigation from "@/components/StepNavigation";
 import React from "react";
 
-export default function DealsLayout({
+export default function BooksLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -14,7 +15,7 @@ export default function DealsLayout({
       />
 
       <div className="mt-20 mb-28 flex flex-col gap-x-16 text-white lg:flex-row">
-        {/* <StepNavigation /> */}
+        <StepNavigation />
         {/* <AddDealContextProvider> */}
         <div className="w-full">{children}</div>
         {/* </AddDealContextProvider> */}
