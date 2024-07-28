@@ -20,7 +20,7 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="/favicon.svg" type="image/jpeg" />
         </head>
-        <body>
+        <body className="bg-gradient-to-r from-[#000018] to-[#010524]">
           <Toaster richColors position="top-center" />
           {children}
         </body>
