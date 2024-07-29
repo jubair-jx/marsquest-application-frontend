@@ -1,68 +1,131 @@
 "use client";
+import RUForm from "@/components/Shared/Form/RUForm";
+import RUInput from "@/components/Shared/Form/RUInput";
 import { useLocalStorage } from "@/local-storage/useLocalStorage";
-import { personalInfoSchema } from "@/validation/InputValidation";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const schema = z.object({
-  fullName: z.string().min(1, "Full Name is required"),
-  dob: z.string().min(1, "Date of Birth is required"),
-  nationality: z.string().min(1, "Nationality is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Invalid phone number"),
-});
+import { FieldValues } from "react-hook-form";
 
 const PersonalInfoForm = ({ nextStep, handleChange, formData }: any) => {
   const { getItem, setItem } = useLocalStorage();
   const defaultValues = getItem("personalInfo") || {};
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues,
-    resolver: zodResolver(personalInfoSchema),
-  });
-
   const router = useRouter();
 
-  const onSubmit = (data: any) => {
-    setItem("personalInfo", data);
+  const handleFormSubmit = async (values: FieldValues) => {
+    setItem("personalInfo", values);
     router.push("/book-seat/travel-prefer");
-  };
 
+    try {
+    } catch (err: any) {
+      // console.log(err);
+    }
+  };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <label htmlFor="fullName">Full Name</label>
-        <input id="fullName" {...register("fullName")} />
-        {errors.fullName && <p>{errors.fullName.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="dob">Date of Birth</label>
-        <input id="dob" type="date" {...register("dob")} />
-        {errors.dob && <p>{errors.dob.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="nationality">Nationality</label>
-        <input id="nationality" {...register("nationality")} />
-        {errors.nationality && <p>{errors.nationality.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="phone">Phone</label>
-        <input id="phone" type="tel" {...register("phone")} />
-        {errors.phone && <p>{errors.phone.message}</p>}
-      </div>
-      <button type="submit">Next</button>
-    </form>
+    <RUForm
+      defaultValues={{
+        password: "",
+        user: {
+          name: "",
+          email: "",
+          username: "",
+          bio: "",
+          profession: "",
+          contactNumber: "",
+          address: "",
+        },
+      }}
+      onSubmit={handleFormSubmit}
+    >
+      <Grid container spacing={2} sx={{}}>
+        <Grid item xs={12} sm={12} md={12}>
+          <RUInput
+            type="text"
+            name="fullName"
+            sx={{
+              fontFamily: "Kanit",
+
+              width: "60%",
+              color: "white",
+              backgroundColor: "whitesmoke",
+              borderRadius: "8px",
+            }}
+            label="Full Name"
+            fullWidth={true}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <RUInput
+            type="name"
+            name="user.username"
+            sx={{
+              fontFamily: "Kanit",
+
+              width: "60%",
+              color: "white",
+              backgroundColor: "whitesmoke",
+              borderRadius: "8px",
+            }}
+            label="Username"
+            fullWidth={true}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <RUInput
+            type="text"
+            name="nationality"
+            sx={{
+              fontFamily: "Kanit",
+
+              width: "60%",
+              color: "white",
+              backgroundColor: "whitesmoke",
+              borderRadius: "8px",
+            }}
+            label="Nationality"
+            fullWidth={true}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <RUInput
+            type="email"
+            name="email"
+            label="E-mail"
+            sx={{
+              fontFamily: "Kanit",
+
+              width: "60%",
+              color: "white",
+              backgroundColor: "whitesmoke",
+              borderRadius: "8px",
+            }}
+            fullWidth={true}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <RUInput
+            type="text"
+            name="phone"
+            label="Phone Number"
+            sx={{
+              fontFamily: "Kanit",
+
+              width: "60%",
+              color: "white",
+              backgroundColor: "whitesmoke",
+              borderRadius: "8px",
+            }}
+            fullWidth={true}
+          />
+        </Grid>
+      </Grid>{" "}
+      <button
+        className="px-8 font-Kanit text-center mx-auto  font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-500"
+        type="submit"
+      >
+        Next
+      </button>
+    </RUForm>
   );
 };
 

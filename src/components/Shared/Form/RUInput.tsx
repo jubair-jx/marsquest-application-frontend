@@ -28,8 +28,11 @@ const RUInput = ({
       control={control}
       name={name}
       render={({ field, fieldState: { error } }) => (
-        <>
-          <label className=" font-Freeman text-sm mb-3" htmlFor={label}>
+        <div className=" flex flex-col">
+          <label
+            className=" font-Raleway text-base mb-1 font-medium"
+            htmlFor={label}
+          >
             {label}
           </label>
           <TextField
@@ -45,7 +48,7 @@ const RUInput = ({
             error={!!error?.message}
             helperText={error?.message}
           />
-        </>
+        </div>
       )}
     />
   );
