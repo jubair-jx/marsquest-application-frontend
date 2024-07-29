@@ -1,4 +1,5 @@
 "use client";
+
 import { formSteps } from "@/data";
 import clsx from "clsx";
 import Link from "next/link";
@@ -9,11 +10,12 @@ import { useEffect, useState } from "react";
 export default function StepNavigation() {
   const pathname = usePathname();
   const currentPath = path.basename(pathname);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     setCurrentStep(formSteps.findIndex((step) => step.route === currentPath));
   }, [currentPath]);
+  console.log(currentPath);
 
   return (
     <div className="mb-12 mt-4 lg:mb-0 min-w-60">
@@ -30,7 +32,7 @@ export default function StepNavigation() {
               className={clsx(
                 "flex h-10 w-10 items-center justify-center rounded-full border  text-sm  transition-colors duration-200  lg:h-12 lg:w-12 lg:text-lg",
                 {
-                  "border-none bg-violet-800 text-black group-hover:border-none group-hover:text-black":
+                  "border-none bg-violet-800 text-white group-hover:border-none group-hover:text-black":
                     currentPath === step.route,
                   "border-white/75 bg-gray-800 group-hover:border-white group-hover:text-white text-white/75":
                     currentPath !== step.route,
@@ -41,10 +43,10 @@ export default function StepNavigation() {
             </span>
             <span
               className={clsx(
-                "hidden text-white/75 text-lg font-Rubik transition-colors duration-200 group-hover:text-white lg:block",
+                "hidden text-white/90 text-lg font-Rubik transition-colors duration-200 group-hover:text-white lg:block",
                 {
                   "font-light": currentPath !== step.route,
-                  "font-semibold text-white": currentPath === step.route,
+                  " text-white": currentPath === step.route,
                 }
               )}
             >
@@ -53,8 +55,7 @@ export default function StepNavigation() {
           </Link>
         ))}
         {/* back button */}
-        <button>
-          {" "}
+        <button className="md:block hidden">
           <Link
             href={formSteps[currentStep - 1]?.link || formSteps[0].link}
             className="mb-4 flex items-center justify-center gap-2 text-lg border-gray-500 rounded-md border-2 shadow-md px-2 py-2 text-center font-medium font-Poppins disabled:text-white/50 lg:mb-12 lg:gap-5"
