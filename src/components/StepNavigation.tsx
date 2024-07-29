@@ -55,7 +55,7 @@ export default function StepNavigation() {
           </Link>
         ))}
         {/* back button */}
-        <button className="md:block hidden">
+        {/* <button className="md:block hidden">
           <Link
             href={formSteps[currentStep - 1]?.link || formSteps[0].link}
             className="mb-4 flex items-center justify-center gap-2 text-lg border-gray-500 rounded-md border-2 shadow-md px-2 py-2 text-center font-medium font-Poppins disabled:text-white/50 lg:mb-12 lg:gap-5"
@@ -76,7 +76,7 @@ export default function StepNavigation() {
               />
             </svg>
           </Link>
-        </button>
+        </button> */}
         {/* mobile background dashes */}
         <div className="absolute top-4 flex h-1 w-full border-b border-dashed lg:hidden" />
       </div>
