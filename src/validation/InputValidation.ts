@@ -12,8 +12,6 @@ export const personalInfoSchema = z.object({
 
 // Validation schema for Travel Preferences
 export const travelPreferencesSchema = z.object({
-  departureDate: z.string().nonempty("Departure Date is required"),
-  returnDate: z.string().nonempty("Return Date is required"),
   accommodation: z.string().min(5, "Accomondation is required"),
   specialRequests: z.string().optional(),
 });

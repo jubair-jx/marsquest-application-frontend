@@ -16,6 +16,7 @@ const RUInput = ({
   type = "text",
   label,
   name,
+  placeholder,
   required = true,
 }: TInputField) => {
   const { control } = useFormContext();
