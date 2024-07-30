@@ -79,7 +79,7 @@ const PersonalInfoForm = () => {
         </Grid>
       </Grid>
       <button
-        className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-500"
+        className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-600"
         type="submit"
       >
         Next

@@ -6,6 +6,7 @@ import { useLocalStorage } from "@/local-storage/useLocalStorage";
 import { travelPreferencesSchema } from "@/validation/InputValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Grid } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
@@ -108,12 +109,19 @@ const TravelPreferForm = () => {
           />
         </Grid>
       </Grid>
-      <button
-        className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-500"
-        type="submit"
-      >
-        Next
-      </button>
+      <div className=" space-x-2">
+        <Link href={"/book-seat/personal-info"}>
+          <button className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-orange-600">
+            Back
+          </button>
+        </Link>
+        <button
+          className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-600"
+          type="submit"
+        >
+          Next
+        </button>
+      </div>
     </RUForm>
   );
 };

@@ -41,7 +41,7 @@ const RUInput = ({
               error
                 ? "border-red-500 text-red-900 placeholder-red-700 focus:border-red-500"
                 : ""
-            } text-sm rounded-md block w-4/6 p-2.5`}
+            } text-sm rounded-md block w-full md:w-4/6 p-2.5`}
             placeholder={label}
           />
           {error && (

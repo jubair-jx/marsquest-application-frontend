@@ -18,7 +18,6 @@ export const travelPreferencesSchema = z.object({
 
 // Validation schema for Health and Safety
 export const healthSafetySchema = z.object({
-  healthDeclaration: z.enum(["yes", "no"]),
   emergencyContact: z.string().nonempty("Emergency Contact is required"),
   medicalConditions: z.string().optional(),
 });

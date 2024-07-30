@@ -69,7 +69,7 @@ const RUDatePicker = ({
             {label}
           </label>
           <Datepicker
-            classNames="w-4/6"
+            classNames="w-full md:w-4/6"
             onChange={handleValueChange}
             show={show}
             setShow={handleClose}
