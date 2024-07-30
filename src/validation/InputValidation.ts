@@ -1,19 +1,20 @@
 import { z } from "zod";
 
 // Validation schema for Personal Information
+
 export const personalInfoSchema = z.object({
-  fullName: z.string().nonempty("Full Name is required"),
-  dob: z.string().nonempty("Date of Birth is required"),
-  nationality: z.string().nonempty("Nationality is required"),
+  fullName: z.string().min(1, "Full Name is required"),
+  /// assuming dateOfBirth is handled separately
+  nationality: z.string().min(1, "Nationality is required"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().nonempty("Invalid phone number"),
+  phone: z.string().min(1, "Phone Number is required"),
 });
 
 // Validation schema for Travel Preferences
 export const travelPreferencesSchema = z.object({
   departureDate: z.string().nonempty("Departure Date is required"),
   returnDate: z.string().nonempty("Return Date is required"),
-  accommodation: z.enum(["spaceHotel", "martianBase"]),
+  accommodation: z.string().min(5, "Accomondation is required"),
   specialRequests: z.string().optional(),
 });
 

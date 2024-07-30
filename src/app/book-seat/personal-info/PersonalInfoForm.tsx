@@ -9,6 +9,7 @@ import { Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const PersonalInfoForm = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -31,29 +32,27 @@ const PersonalInfoForm = () => {
   const router = useRouter();
 
   const handleFormSubmit = async (values: FieldValues) => {
-    console.log("Form values:", { ...values, dateOfBirth: selectedDate });
-    // setItem("personalInfo", { ...values, dateOfBirth: selectedDate });
-    // router.push("/book-seat/travel-prefer");
-
-    try {
-      console.log("Form values (try block):", {
-        ...values,
-        dateOfBirth: selectedDate,
-      });
-    } catch (err: any) {
-      console.error(err);
+    if (
+      selectedDate === undefined ||
+      selectedDate === null ||
+      selectedDate === ""
+    ) {
+      toast.info("Please select your Date of Birth");
+      return;
     }
+    setItem("personalInfo", { ...values, dateOfBirth: selectedDate });
+    router.push("/book-seat/travel-prefer");
   };
 
   return (
     <RUForm
+      onSubmit={handleFormSubmit}
       resolver={zodResolver(personalInfoSchema)}
       defaultValues={defaultValues}
-      onSubmit={handleFormSubmit}
     >
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12}>
-          <RUInput type="text" name="fullName" label="Full Name" fullWidth />
+          <RUInput type="text" name="fullName" label="Full Name" />
         </Grid>
         <Grid item xs={12} sm={12} md={12}>
           <RUDatePicker
