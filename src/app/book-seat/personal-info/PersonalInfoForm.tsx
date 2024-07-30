@@ -12,43 +12,48 @@ import { FieldValues } from "react-hook-form";
 
 const PersonalInfoForm = () => {
   const [show, setShow] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState();
-  const handleChange = (selectedDate: Date) => {
-    setSelectedDate(selectedDate);
-    console.log(selectedDate);
+  const [selectedDate, setSelectedDate] = useState<string | undefined>();
+
+  const handleChange = (selectedDate: any) => {
+    if (selectedDate) {
+      const formattedDate = selectedDate.toISOString();
+      setSelectedDate(formattedDate);
+    }
   };
+
   const handleClose = (state: boolean) => {
     setShow(state);
   };
+
   const { getItem, setItem } = useLocalStorage();
   const defaultValues = getItem("personalInfo") || {};
 
   const router = useRouter();
 
   const handleFormSubmit = async (values: FieldValues) => {
-    // console.log({ values, dateOfBirth });
-    // setItem("personalInfo", { ...values, dateOfBirth });
+    console.log("Form values:", { ...values, dateOfBirth: selectedDate });
+    // setItem("personalInfo", { ...values, dateOfBirth: selectedDate });
     // router.push("/book-seat/travel-prefer");
 
     try {
+      console.log("Form values (try block):", {
+        ...values,
+        dateOfBirth: selectedDate,
+      });
     } catch (err: any) {
-      // console.log(err);
+      console.error(err);
     }
   };
+
   return (
     <RUForm
       resolver={zodResolver(personalInfoSchema)}
       defaultValues={defaultValues}
       onSubmit={handleFormSubmit}
     >
-      <Grid container spacing={2} sx={{}}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12}>
-          <RUInput
-            type="text"
-            name="fullName"
-            label="Full Name"
-            fullWidth={true}
-          />
+          <RUInput type="text" name="fullName" label="Full Name" fullWidth />
         </Grid>
         <Grid item xs={12} sm={12} md={12}>
           <RUDatePicker
@@ -64,7 +69,7 @@ const PersonalInfoForm = () => {
             type="text"
             name="nationality"
             label="Nationality"
-            fullWidth={true}
+            fullWidth
           />
         </Grid>
         <Grid item xs={12} sm={12} md={12}>
@@ -73,9 +78,9 @@ const PersonalInfoForm = () => {
         <Grid item xs={12} sm={12} md={12}>
           <RUInput type="text" name="phone" label="Phone Number" />
         </Grid>
-      </Grid>{" "}
+      </Grid>
       <button
-        className="px-8 font-Kanit text-center mx-auto  font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-500"
+        className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-violet-500"
         type="submit"
       >
         Next

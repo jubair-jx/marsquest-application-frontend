@@ -69,11 +69,11 @@ const RUDatePicker = ({
             {label}
           </label>
           <Datepicker
-            classNames="  w-4/6"
+            classNames="w-4/6"
             onChange={handleValueChange}
             show={show}
             setShow={handleClose}
-          />
+          />{" "}
           {error?.message && (
             <p className="text-sm text-red-600 dark:text-red-500">
               <span className="font-medium">{error?.message}</span>
