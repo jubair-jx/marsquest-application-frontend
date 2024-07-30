@@ -15,7 +15,6 @@ export default function StepNavigation() {
   useEffect(() => {
     setCurrentStep(formSteps.findIndex((step) => step.route === currentPath));
   }, [currentPath]);
-  console.log(currentPath);
 
   return (
     <div className="mb-12 mt-4 lg:mb-0 min-w-60">

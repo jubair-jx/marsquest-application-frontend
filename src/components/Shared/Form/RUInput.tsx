@@ -1,4 +1,4 @@
-import { SxProps, TextField } from "@mui/material";
+import { SxProps } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 
 type TInputField = {
@@ -13,13 +13,11 @@ type TInputField = {
 };
 
 const RUInput = ({
-  size = "small",
   type = "text",
   label,
-  fullWidth,
+
   name,
-  sx,
-  placeholder,
+
   required = true,
 }: TInputField) => {
   const { control } = useFormContext();
@@ -35,10 +33,8 @@ const RUInput = ({
           >
             {label}
           </label>
-          <TextField
+          {/* <TextField
             sx={{ ...sx }}
-            placeholder={label}
-            required={required}
             {...field}
             label={label}
             type={type}
@@ -47,7 +43,23 @@ const RUInput = ({
             fullWidth={fullWidth}
             error={!!error?.message}
             helperText={error?.message}
+          /> */}
+
+          <input
+            {...field}
+            type={type}
+            className={`bg-gray-200 text-lg font-Poppins text-black border ${
+              error?.message
+                ? "border-red-500 text-red-900 placeholder-red-700 focus:border-red-500"
+                : ""
+            } text-sm rounded-md block w-4/6 p-2.5 `}
+            placeholder={label}
           />
+          {error?.message && (
+            <p className="text-sm text-red-600 dark:text-red-500">
+              <span className="font-medium">{error?.message}</span>
+            </p>
+          )}
         </div>
       )}
     />
