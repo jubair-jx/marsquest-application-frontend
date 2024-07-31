@@ -7,10 +7,10 @@ const CommonDashboardHeaderTitle = ({
 }) => {
   return (
     <div data-aos="fade-up">
-      <h1 className=" text-2xl font-semibold font-poppins mt-3 capitalize">
+      <h1 className=" text-gray-100 text-xl sm:text-3xl font-semibold font-Rubik mt-3 capitalize">
         {mainTitle}
       </h1>
-      <span className=" text-sm font-normal font-poppins">
+      <span className="text-gray-200 text-sm font-normal font-poppins">
         {secondaryTitle}
       </span>
     </div>

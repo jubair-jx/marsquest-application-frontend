@@ -5,7 +5,7 @@ import setAccessToken from "./setAccessToken";
 
 export const userLogin = async (data: FieldValues) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/owner/auth/boss/login`,
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
     {
       method: "POST",
       headers: {
@@ -20,7 +20,7 @@ export const userLogin = async (data: FieldValues) => {
 
   if (userInfo?.data?.accessToken) {
     setAccessToken(userInfo?.data?.accessToken, {
-      redirect: "/dashboard/admin",
+      redirect: "/dashboard/admin/manage-applicant",
     });
   }
   return userInfo;

@@ -1,9 +1,14 @@
 "use client";
 import { useGetApplicantsQuery } from "@/redux/api/applicantApi";
 import CommonDashboardHeaderTitle from "@/shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
+import dayjs from "dayjs";
 
 function ApplicantManangement() {
   const { data, isLoading } = useGetApplicantsQuery({});
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <section className=" mt-6">
       <CommonDashboardHeaderTitle mainTitle="Boss!!! You can see and manage applicants" />
@@ -12,71 +17,75 @@ function ApplicantManangement() {
         className="w-full mb-8 overflow-hidden rounded-lg shadow-xs mt-10"
       >
         <div className="w-full overflow-x-auto">
+          <div className=" text-yellow-200 font-Rubik text-base mb-4 font-medium">
+            Please Login Your Own Credentials, Otherwise, you {"won't"} see and
+            update any things
+          </div>
+
           <table className="w-full whitespace-no-wrap">
             <thead>
-              <tr className="text-xs font-semibold tracking-wide text-gray-800 font-poppins text-center uppercase border-b bg-gray-50 ">
+              <tr className="text-xs font-semibold tracking-wide text-gray-800 font-Raleway text-center uppercase border-b bg-gray-50 ">
                 <th className="px-3 py-3">Sl No</th>
                 <th className="px-3 py-3">Name</th>
-
                 <th className="px-3 py-3">E-mail</th>
                 <th className="px-3 py-3">Phone</th>
-                <th className="px-3 py-3">DOB</th>
                 <th className="px-3 py-3">Dept. Date</th>
                 <th className="px-3 py-3">Retn. Date</th>
                 <th className="px-3 py-3">Details</th>
               </tr>
             </thead>
             {!isLoading ? (
-              data?.map((item: any) => (
+              data?.map((item: any, index: number) => (
                 <tbody
                   key={item.id}
-                  className="bg-white divide-y text-center divide-gray-800 font-poppins "
+                  className="bg-white divide-y text-center divide-gray-800 font-poppins mx-auto"
                 >
-                  <tr className="text-gray-800">
+                  <tr className="text-gray-800 text-center mx-auto">
                     <td className="px-4 py-3">
-                      <p className="font-semibold text-center">{"index + 1"}</p>
+                      <p className="font-semibold text-center">{index + 1}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center text-sm">
-                        <div>
-                          <p className="font-semibold text-center">
-                            {"item?.name"}
-                          </p>
-                        </div>
+                      <div className="flex items-center justify-center text-sm">
+                        <p className="font-semibold text-center">
+                          {item?.fullName}
+                        </p>
                       </div>
                     </td>
 
-                    <td className="px-4 py-3 text-sm">{"item?.email"}</td>
-                    <td className="px-4 py-3 text-sm">
-                      {"item?.contactNumber"}
-                    </td>
-                    <td className="px-4 py-3 text-xs">
-                      <span>{"Active"}</span>
+                    <td className="px-4 py-3 text-sm">{item?.email}</td>
+                    <td className="px-4 py-3 text-sm">{item?.phone}</td>
+                    <td className="px-4 py-3 text-sm font-semibold">
+                      {dayjs(item?.departureDate).format("DD/MM/YYYY")}
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center justify-center space-x-2 text-sm">
-                        Active
+                      <div className="flex items-center font-semibold justify-center space-x-2 text-sm">
+                        {dayjs(item?.returnDate).format("DD/MM/YYYY")}
                       </div>
                     </td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center justify-center space-x-2 text-sm">
-                        Make Admin
-                      </div>
+                    <td className="px-4 py-3 text-center mx-auto">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-7 text-center mx-auto cursor-pointer"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                      </svg>
                     </td>
                   </tr>
                 </tbody>
               ))
             ) : (
-              <div>Loading...</div>
+              <div className="text-white font-Poppins text-base">
+                Loading...
+              </div>
             )}
-
-            {/* {!isLoading ? (
-              data?.map((item: any, index: number) => (
-         
-            ) : 
-              ))
-              <div>Loading...</div>
-            )} */}
           </table>
         </div>
         <div className="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-800 uppercase border-t font-poppins border-gray-400 bg-gray-50 sm:grid-cols-9 ">

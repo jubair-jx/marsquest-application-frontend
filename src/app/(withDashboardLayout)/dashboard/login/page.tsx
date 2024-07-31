@@ -50,7 +50,12 @@ const LoginPage = () => {
         },
       }}
     >
-      <Stack alignItems="center" justifyContent="center">
+      <Stack
+        alignItems="center"
+        justifyContent="center"
+        alignContent={"center"}
+        justifySelf={"center"}
+      >
         <Box
           sx={{
             "& svg": {
@@ -64,7 +69,13 @@ const LoginPage = () => {
         <Typography
           variant="h5"
           fontWeight={600}
-          sx={{ mb: 2, mt: -1.5, fontFamily: "Kanit" }}
+          sx={{
+            mb: 2,
+            mt: -1.5,
+            fontFamily: "Kanit",
+            fontSize: "40px",
+            color: "white",
+          }}
         >
           Login
         </Typography>
@@ -74,7 +85,11 @@ const LoginPage = () => {
         defaultValues={{ email: "", password: "" }}
         resolver={zodResolver(validationSchema)}
       >
-        <Grid>
+        <Grid
+          justifyContent={"center"}
+          alignItems={"center"}
+          sx={{ width: "100%" }}
+        >
           <Grid item xs={12} sm={12} md={6}>
             <RUInput
               name="email"
@@ -98,7 +113,7 @@ const LoginPage = () => {
         <Button
           type="submit"
           sx={{
-            width: "100%",
+            width: "67%",
             my: 2,
             background: "#DC5F00",
             color: "#FFFF",

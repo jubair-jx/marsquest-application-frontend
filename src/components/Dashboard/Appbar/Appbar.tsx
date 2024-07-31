@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import React from "react";
+import AccountMenu from "./AccountMenu";
 
 type Tprops = {
   drawerWidth: number;
@@ -59,6 +60,7 @@ function AppTopBar({
         >
           <Stack direction="row" gap={3}>
             <Avatar />
+            <AccountMenu />
           </Stack>
         </Box>
       </Toolbar>
