@@ -23,6 +23,7 @@ const HealthSafetyForm = () => {
 
   const router = useRouter();
 
+  //main function
   const handleFormSubmit = async (values: FieldValues) => {
     if (healthDeclaration === null || healthDeclaration === undefined) {
       toast.warning(
