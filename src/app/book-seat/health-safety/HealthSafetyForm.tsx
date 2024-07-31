@@ -1,8 +1,8 @@
 "use client";
+import { createApplicant } from "@/actions/createApplicant";
 import RUForm from "@/components/Shared/Form/RUForm";
 import RUInput from "@/components/Shared/Form/RUInput";
 import { useLocalStorage } from "@/local-storage/useLocalStorage";
-import { useCreateApplicantMutation } from "@/redux/api/applicantApi";
 import { healthSafetySchema } from "@/validation/InputValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Grid } from "@mui/material";
@@ -13,7 +13,6 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
 const HealthSafetyForm = () => {
-  const [createApplicant] = useCreateApplicantMutation();
   const { getItem, setItem } = useLocalStorage();
   const defaultValues = getItem("healthInfo") || {};
   const [healthDeclaration, setHealthDeclaration] = useState<boolean>(
@@ -41,22 +40,22 @@ const HealthSafetyForm = () => {
       ...values,
       healthDeclaration,
     };
-    console.log(applicantData);
-    // const res = await createApplicant(applicantData).unwrap();
-    // try {
-    //   if (res?.id) {
-    //     toast.success("Your application is created successfully!!!");
-    //   } else {
-    //     // toast.error(
-    //     //   res?.message || "Something went wrong, Please try again later"
-    //     // );
-    //   }
-    // } catch (err) {
-    //   // console.log(res);
-    //   toast.error(
-    //     res?.message || "Something went wrong, Please try again later"
-    //   );
-    // }
+
+    const res = await createApplicant(applicantData);
+    try {
+      if (res?.success === true || res?.statusCode === 200) {
+        toast.success(res?.message);
+        router.push("/book-seat/success");
+        localStorage.clear();
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err) {
+      console.log(res);
+      toast.error(
+        res?.message || "Something went wrong, Please try again later"
+      );
+    }
     // router.push("/book-seat/health-safety");
   };
 

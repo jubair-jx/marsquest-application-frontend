@@ -32,6 +32,7 @@ export const axiosBaseQuery =
         },
       });
       return result;
+
     } catch (axiosError) {
       const err = axiosError as AxiosError;
       return {
