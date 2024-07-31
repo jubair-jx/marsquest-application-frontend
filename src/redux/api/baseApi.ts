@@ -8,7 +8,7 @@ import { tagTypesList } from "../tagTypes/tagTypes";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: axiosBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://marquest-backend.vercel.app/api",
   }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,

@@ -12,7 +12,15 @@ export const applicantApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.applicant],
     }),
+    getApplicants: build.query({
+      query: () => ({
+        url: `/applicant`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.applicant],
+    }),
   }),
 });
 
-export const { useCreateApplicantMutation } = applicantApi;
+export const { useCreateApplicantMutation, useGetApplicantsQuery } =
+  applicantApi;

@@ -14,15 +14,14 @@ import { toast } from "sonner";
 
 const HealthSafetyForm = () => {
   const { getItem, setItem } = useLocalStorage();
+
   const defaultValues = getItem("healthInfo") || {};
   const [healthDeclaration, setHealthDeclaration] = useState<boolean>(
     defaultValues.healthDeclaration
   );
   const personalInfoData = getItem("personalInfo") || {};
   const travelPreferData = getItem("travelInfo") || {};
-
   const router = useRouter();
-
   //main function
   const handleFormSubmit = async (values: FieldValues) => {
     if (healthDeclaration === null || healthDeclaration === undefined) {
@@ -43,18 +42,20 @@ const HealthSafetyForm = () => {
     };
 
     const res = await createApplicant(applicantData);
+    const toastId = toast.loading("Your application is submitting...");
     try {
       if (res?.success === true || res?.statusCode === 200) {
-        toast.success(res?.message);
+        toast.success(res?.message, { id: toastId });
         router.push("/book-seat/success");
         localStorage.clear();
       } else {
-        toast.error(res?.message);
+        toast.error(res?.message, { id: toastId });
       }
     } catch (err) {
       console.log(res);
       toast.error(
-        res?.message || "Something went wrong, Please try again later"
+        res?.message || "Something went wrong, Please try again later",
+        { id: toastId }
       );
     }
     // router.push("/book-seat/health-safety");

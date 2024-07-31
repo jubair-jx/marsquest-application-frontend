@@ -1,8 +1,9 @@
 "use client";
+import { useGetApplicantsQuery } from "@/redux/api/applicantApi";
 import CommonDashboardHeaderTitle from "@/shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
 
 function ApplicantManangement() {
-  const isLoading = false;
+  const { data, isLoading } = useGetApplicantsQuery({});
   return (
     <section className=" mt-6">
       <CommonDashboardHeaderTitle mainTitle="Boss!!! You can see and manage applicants" />
@@ -26,48 +27,56 @@ function ApplicantManangement() {
               </tr>
             </thead>
             {!isLoading ? (
-              // data?.map((item: any, index: number) => (
-              <tbody className="bg-white divide-y text-center divide-gray-800 font-poppins ">
-                {/* {
-                  <p className=" text-center font-Rubik text-base font-medium">
-                    Applicant Date Not Found!!! Please Login Now...
-                  </p>
-                } */}
-                <tr className="text-gray-800">
-                  <td className="px-4 py-3">
-                    <p className="font-semibold text-center">{"index + 1"}</p>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center text-sm">
-                      <div>
-                        <p className="font-semibold text-center">
-                          {"item?.name"}
-                        </p>
+              data?.map((item: any) => (
+                <tbody
+                  key={item.id}
+                  className="bg-white divide-y text-center divide-gray-800 font-poppins "
+                >
+                  <tr className="text-gray-800">
+                    <td className="px-4 py-3">
+                      <p className="font-semibold text-center">{"index + 1"}</p>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center text-sm">
+                        <div>
+                          <p className="font-semibold text-center">
+                            {"item?.name"}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td className="px-4 py-3 text-sm">{"item?.email"}</td>
-                  <td className="px-4 py-3 text-sm">{"item?.contactNumber"}</td>
-                  <td className="px-4 py-3 text-xs">
-                    <span>{"Active"}</span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center justify-center space-x-2 text-sm">
-                      Active
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center justify-center space-x-2 text-sm">
-                      Make Admin
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
+                    <td className="px-4 py-3 text-sm">{"item?.email"}</td>
+                    <td className="px-4 py-3 text-sm">
+                      {"item?.contactNumber"}
+                    </td>
+                    <td className="px-4 py-3 text-xs">
+                      <span>{"Active"}</span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center justify-center space-x-2 text-sm">
+                        Active
+                      </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center justify-center space-x-2 text-sm">
+                        Make Admin
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ))
             ) : (
-              // ))
               <div>Loading...</div>
             )}
+
+            {/* {!isLoading ? (
+              data?.map((item: any, index: number) => (
+         
+            ) : 
+              ))
+              <div>Loading...</div>
+            )} */}
           </table>
         </div>
         <div className="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-800 uppercase border-t font-poppins border-gray-400 bg-gray-50 sm:grid-cols-9 ">
