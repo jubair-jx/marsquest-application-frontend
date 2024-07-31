@@ -18,6 +18,8 @@ export function useLocalStorage() {
       localStorage.removeItem(key);
     }
   };
-
-  return { getItem, setItem, removeItem };
+  const clearItem = () => {
+    return localStorage.clear();
+  };
+  return { getItem, setItem, removeItem, clearItem };
 }

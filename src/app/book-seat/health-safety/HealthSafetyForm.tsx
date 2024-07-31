@@ -13,10 +13,18 @@ import { FieldValues } from "react-hook-form";
 const HealthSafetyForm = () => {
   const { getItem, setItem } = useLocalStorage();
   const defaultValues = getItem("healthInfo") || {};
-
   const [healthDeclaration, setHealthDeclaration] = useState<boolean | null>(
     defaultValues.healthDeclaration || null
   );
+  const personalInfoData = getItem("personalInfo") || {};
+  const travelPreferData = getItem("travelInfo") || {};
+
+  const applicantData = {
+    ...defaultValues,
+    ...personalInfoData,
+    ...travelPreferData,
+  };
+  console.log(applicantData);
   const router = useRouter();
 
   const handleFormSubmit = async (values: FieldValues) => {
