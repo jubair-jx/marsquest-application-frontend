@@ -2,6 +2,7 @@
 import RUForm from "@/components/Shared/Form/RUForm";
 import RUInput from "@/components/Shared/Form/RUInput";
 import { useLocalStorage } from "@/local-storage/useLocalStorage";
+import { useCreateApplicantMutation } from "@/redux/api/applicantApi";
 import { healthSafetySchema } from "@/validation/InputValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Grid } from "@mui/material";
@@ -9,30 +10,53 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const HealthSafetyForm = () => {
+  const [createApplicant] = useCreateApplicantMutation();
   const { getItem, setItem } = useLocalStorage();
   const defaultValues = getItem("healthInfo") || {};
-  const [healthDeclaration, setHealthDeclaration] = useState<boolean | null>(
-    defaultValues.healthDeclaration || null
+  const [healthDeclaration, setHealthDeclaration] = useState<boolean>(
+    defaultValues.healthDeclaration
   );
   const personalInfoData = getItem("personalInfo") || {};
   const travelPreferData = getItem("travelInfo") || {};
 
-  const applicantData = {
-    ...defaultValues,
-    ...personalInfoData,
-    ...travelPreferData,
-  };
-  console.log(applicantData);
   const router = useRouter();
 
   const handleFormSubmit = async (values: FieldValues) => {
-    console.log({ ...values, healthDeclaration });
+    if (healthDeclaration === null || healthDeclaration === undefined) {
+      toast.warning(
+        "Please accept the health declaration checkbox before submitting."
+      );
+      return;
+    }
     setItem("healthInfo", {
       ...values,
       healthDeclaration,
     });
+    const applicantData = {
+      ...personalInfoData,
+      ...travelPreferData,
+      ...values,
+      healthDeclaration,
+    };
+    console.log(applicantData);
+    // const res = await createApplicant(applicantData).unwrap();
+    // try {
+    //   if (res?.id) {
+    //     toast.success("Your application is created successfully!!!");
+    //   } else {
+    //     // toast.error(
+    //     //   res?.message || "Something went wrong, Please try again later"
+    //     // );
+    //   }
+    // } catch (err) {
+    //   // console.log(res);
+    //   toast.error(
+    //     res?.message || "Something went wrong, Please try again later"
+    //   );
+    // }
     // router.push("/book-seat/health-safety");
   };
 

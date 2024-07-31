@@ -1,12 +1,7 @@
 import { authKey } from "@/constant/constant";
-import setAccessToken from "@/services/action/setAccessToken";
-import { getNewAccessToken } from "@/services/auth-services";
 
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
-import {
-  getLocalStorageUserInfo,
-  setLocalStorage,
-} from "@/utils/local-stoarge";
+import { getLocalStorageUserInfo } from "@/utils/local-stoarge";
 
 import axios from "axios";
 
@@ -50,11 +45,11 @@ axiosInstance.interceptors.response.use(
     const config = error?.config;
     if (error?.response?.status === 500 && !config.sent) {
       config.sent = true;
-      const response = await getNewAccessToken();
-      const accessToken = response?.data?.accessToken;
-      config.headers["Authorization"] = accessToken;
-      setLocalStorage(authKey, accessToken);
-      setAccessToken(accessToken);
+      // const response = await getNewAccessToken();
+      // const accessToken = response?.data?.accessToken;
+      // config.headers["Authorization"] = accessToken;
+      // setLocalStorage(authKey, accessToken);
+      // setAccessToken(accessToken);
       return axiosInstance(config);
     } else {
       const responseObject: IGenericErrorResponse = {

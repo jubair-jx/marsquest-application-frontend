@@ -3,7 +3,7 @@ export enum tagTypes {
   admin = "admin",
   users = "users",
   flat = "flat",
-  booking = "booking",
+  applicant = "applicant",
   profile = "profile",
 }
 export const tagTypesList = [
@@ -11,7 +11,7 @@ export const tagTypesList = [
   tagTypes.admin,
   tagTypes.users,
   tagTypes.admin,
-  tagTypes.booking,
+  tagTypes.applicant,
   tagTypes.flat,
   tagTypes.profile,
 ];
