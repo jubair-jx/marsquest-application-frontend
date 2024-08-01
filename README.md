@@ -59,6 +59,21 @@ MarQuest Application/
 
 ## Getting Started
 
+## Admin Credentials
+
+```typescript
+`For Dashboard Testing purpose`
+{
+    "email": "jubair.jx1@mail.com",
+    "password": "123456"
+}
+or
+{
+    "email": "jubair.jx@mail.com",
+    "password": "123456"
+}
+```
+
 ### Run Project In your Local Machine
 
 ## For Backend Checking Tips
