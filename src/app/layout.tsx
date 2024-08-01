@@ -18,7 +18,7 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <head>
-          <link rel="icon" href="/favicon.svg" type="image/jpeg" />
+          <link rel="icon" href="/favicon.png" type="image/png" />
         </head>
         <body className="bg-gradient-to-r from-[#000018] to-[#010524]">
           <Toaster richColors position="top-center" />

@@ -3,6 +3,7 @@ import ApplicantDetailsModal from "@/components/Dashboard/ManageApplicant/Applic
 import CommonDashboardHeaderTitle from "@/components/Shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
 import { useGetApplicantsQuery } from "@/redux/api/applicantApi";
 import dayjs from "dayjs";
+
 import { useState } from "react";
 
 function ApplicantManangement() {
@@ -28,7 +29,7 @@ function ApplicantManangement() {
           <div className="w-full overflow-x-auto">
             <div className=" text-yellow-200 font-Rubik text-base mb-4 font-medium">
               Please Login Your Own Credentials, Otherwise, you {"won't"} see
-              and do any things
+              and do any things (if logged in : please refresh the page)
             </div>
 
             <table className="w-full whitespace-no-wrap">
