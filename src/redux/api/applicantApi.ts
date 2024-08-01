@@ -19,8 +19,18 @@ export const applicantApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.applicant],
     }),
+    getApplicant: build.query({
+      query: (id) => ({
+        url: `/applicant/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.applicant],
+    }),
   }),
 });
 
-export const { useCreateApplicantMutation, useGetApplicantsQuery } =
-  applicantApi;
+export const {
+  useCreateApplicantMutation,
+  useGetApplicantsQuery,
+  useGetApplicantQuery,
+} = applicantApi;

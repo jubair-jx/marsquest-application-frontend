@@ -14,7 +14,7 @@ import { toast } from "sonner";
 
 const HealthSafetyForm = () => {
   const { getItem, setItem } = useLocalStorage();
-
+  const [isLoading, setLoading] = useState<boolean>(false);
   const defaultValues = getItem("healthInfo") || {};
   const [healthDeclaration, setHealthDeclaration] = useState<boolean>(
     defaultValues.healthDeclaration
@@ -40,12 +40,14 @@ const HealthSafetyForm = () => {
       ...values,
       healthDeclaration,
     };
-
+    setLoading(true);
     const res = await createApplicant(applicantData);
+    setLoading(true);
     const toastId = toast.loading("Your application is submitting...");
     try {
       if (res?.success === true || res?.statusCode === 200) {
         toast.success(res?.message, { id: toastId });
+        setLoading(false);
         router.push("/book-seat/success");
         localStorage.clear();
       } else {
@@ -119,7 +121,10 @@ const HealthSafetyForm = () => {
           </button>
         </Link>
         <button
-          className="px-8 font-Kanit text-center mx-auto font-medium mt-3 py-2 text-white text-sm rounded-md bg-green-600"
+          disabled={isLoading}
+          className={`px-8  font-Kanit text-center mx-auto font-medium mt-3 py-2 ${
+            isLoading ? "text-gray-50 bg-green-400" : "text-white bg-green-600"
+          } text-sm rounded-md `}
           type="submit"
         >
           Submit

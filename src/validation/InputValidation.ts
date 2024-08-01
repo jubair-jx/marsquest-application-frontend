@@ -12,7 +12,7 @@ export const personalInfoSchema = z.object({
 
 // Validation schema for Travel Preferences
 export const travelPreferencesSchema = z.object({
-  accommodation: z.string().min(5, "Accomondation is required"),
+  accommodation: z.string().min(3, "Accomondation is required"),
   specialRequests: z.string().optional(),
 });
 
