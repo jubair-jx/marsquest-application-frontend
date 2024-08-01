@@ -1,5 +1,5 @@
 "use client";
-import CommonDashboardHeaderTitle from "@/shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
+import CommonDashboardHeaderTitle from "@/components/Shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
 
 function AdminHomePage() {
   return (

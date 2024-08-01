@@ -20,7 +20,7 @@ function ApplicantDetailsModal({ ModalOpen, setModalOpen, id }: TProps) {
       title="Boss!!! You can see now applicant details"
     >
       {!isLoading ? (
-        <div className=" flex justify-around gap-2 items-center">
+        <div className=" flex justify-between gap-32 items-center">
           <div>
             <h1 className=" font-Rubik font-medium  text-lg">
               Name :{" "}
@@ -61,7 +61,7 @@ function ApplicantDetailsModal({ ModalOpen, setModalOpen, id }: TProps) {
               </span>
             </h1>
           </div>
-          {/* <div>
+          <div>
             <h1 className=" font-Rubik font-medium  text-lg">
               Departure Date :{" "}
               <span className="font-Poppins font-normal text-base">
@@ -93,7 +93,9 @@ function ApplicantDetailsModal({ ModalOpen, setModalOpen, id }: TProps) {
             <h1 className=" font-Rubik font-medium  text-lg">
               Medical Conditions :{" "}
               <span className="font-Poppins font-normal text-base">
-                {data?.specialRequests === "" ? "N/A" : data?.medicalConditions}
+                {data?.medicalConditions === ""
+                  ? "N/A"
+                  : data?.medicalConditions}
               </span>
             </h1>
             <h1 className=" font-Rubik font-medium  text-lg">
@@ -102,7 +104,7 @@ function ApplicantDetailsModal({ ModalOpen, setModalOpen, id }: TProps) {
                 {data?.healthDeclaration === true ? "Yes" : "No" || "N/A"}
               </span>
             </h1>
-          </div> */}
+          </div>
         </div>
       ) : (
         <div>Loading...</div>

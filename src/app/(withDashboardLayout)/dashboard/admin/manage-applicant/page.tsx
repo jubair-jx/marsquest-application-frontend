@@ -1,7 +1,7 @@
 "use client";
 import ApplicantDetailsModal from "@/components/Dashboard/ManageApplicant/ApplicantModal";
+import CommonDashboardHeaderTitle from "@/components/Shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
 import { useGetApplicantsQuery } from "@/redux/api/applicantApi";
-import CommonDashboardHeaderTitle from "@/shared/CommonDashboardHeaderTitle/CommonDashboardHeaderTitle";
 import dayjs from "dayjs";
 import { useState } from "react";
 

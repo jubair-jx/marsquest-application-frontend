@@ -11,7 +11,7 @@ export default function BooksLayout({
     <section className="min-h-screen px-6 max-w-7xl mx-auto py-14">
       <PageHeader
         title="Book your own seat"
-        subtitle="Have an journey with that? Let us know!"
+        subtitle="Have an amazing journey with marvelous experience, please fill up this form.!!!"
       />
 
       <div className="mt-14 mb-28 flex flex-col gap-x-36 text-white lg:flex-row">

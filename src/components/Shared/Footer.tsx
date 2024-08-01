@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="w-full relative pt-20 pb-10 container mx-auto z-10">
       {/* background grid */}
-      <div className="w-full absolute left-0 -bottom-72 min-h-20">
+      <div className="w-full absolute left-0 -bottom-72 min-h-20 -z-10">
         <Image
           src="/footer-grid.svg"
           height={400}
@@ -35,10 +35,14 @@ const Footer = () => {
           ensures a thorough and smooth application process
         </p>
       </div>
-      <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
+      <div className="flex z-40 mt-16 md:flex-row flex-col justify-between items-center">
         <p className="md:text-base font-Rubik text-white mb-3 text-sm md:font-normal font-light">
-          Copyright 2022-2025 © Developed by Mohammad{" "}
-          <span className=" text-purple-300">Jubair</span>
+          Copyright 2022-2025 © Developed by{" "}
+          <Link href={"https://mohammad-jubair.vercel.app/"} target="_blank">
+            <span className=" text-purple-500 cursor-pointer font-medium z-50">
+              Mohammad Jubair
+            </span>
+          </Link>
         </p>
 
         <div className="flex items-center md:gap-3 gap-6 text-white">

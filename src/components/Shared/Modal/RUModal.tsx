@@ -1,10 +1,8 @@
 "use client";
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, SxProps } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
+import { Box, Button, DialogActions, SxProps } from "@mui/material";
+import Dialog, { DialogProps } from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
 
@@ -34,49 +32,49 @@ export default function RUModal({
   sx,
   subtitle,
 }: TProps) {
+  const [fullWidth, setFullWidth] = React.useState(true);
+  const [maxWidth, setMaxWidth] = React.useState<DialogProps["maxWidth"]>("md");
+
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
     <React.Fragment>
-      <BootstrapDialog
-        sx={{ width: "900px" }}
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
+      <Dialog
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
         open={open}
+        onClose={handleClose}
       >
         <DialogTitle
           sx={{
             fontFamily: "Rubik",
             fontSize: "25px",
-            borderBottom: "1px",
             borderColor: "black",
           }}
           id="customized-dialog-title"
         >
           {title}
         </DialogTitle>
-        <p className=" text-sm font-normal font-poppins pl-6 mb-3 pr-3">
-          {subtitle}
-        </p>
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: "absolute",
-            right: 1,
-            top: 1,
-
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent dividers>
-          <Box>{children}</Box>
+        <DialogContent>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              m: "auto",
+              width: "fit-content",
+            }}
+          >
+            {children}
+          </Box>
         </DialogContent>
-      </BootstrapDialog>
+        <DialogActions>
+          <Button variant="contained" onClick={handleClose}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </React.Fragment>
   );
 }
